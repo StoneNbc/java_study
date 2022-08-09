@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<!-- saved from url=(0052)http://getbootstrap.com/docs/4.0/examples/dashboard/ -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.thymeleaf.org/thymeleaf-extras-shiro">
+<!--      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"-->
+
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Users</title>
+  <!-- Bootstrap core CSS -->
+  <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link th:href="@{/css/dashboard.css}" rel="stylesheet">
+  <style type="text/css">
+    /* Chart.js */
+
+    @-webkit-keyframes chartjs-render-animation {
+      from {
+        opacity: 0.99
+      }
+      to {
+        opacity: 1
+      }
+    }
+
+    @keyframes chartjs-render-animation {
+      from {
+        opacity: 0.99
+      }
+      to {
+        opacity: 1
+      }
+    }
+
+    .chartjs-render-monitor {
+      -webkit-animation: chartjs-render-animation 0.001s;
+      animation: chartjs-render-animation 0.001s;
+    }
+  </style>
+</head>
+
+<body>
+<!--头部导航栏-->
+<div th:replace="~{commons/commons.html::topbar}"></div>
+<div class="container-fluid">
+  <div class="row">
+    <!--侧边栏-->
+    <div th:insert="~{commons/commons.html::sidebar(active='main.html')}"></div>
+
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+      <h2>
+        用户信息
+      </h2>
+<!--      <table class="table table-striped table-sm">-->
+<!--        <tbady>-->
+<!--          <td th:text="${emp.getId()}"></td>-->
+<!--          <td th:text="${emp.getLastName()}"></td>-->
+<!--          <td th:text="${emp.getEmail()}"></td>-->
+<!--          <td th:text="${emp.getGender()==0?'女':'男'}"></td>-->
+<!--          <td th:text="${emp.department.getDepartmentName()}"></td>-->
+<!--          <td th:text="${#dates.format(emp.getBirth(),'yyyy-MM-dd HH:mm:ss')}"></td>-->
+<!--        </tbady>-->
+<!--      </table>-->
+
+      <form >
+        <div class="form-group">
+          <label style="font-weight: bold">ID Number</label>
+          <p th:text="${emp.getId()}"></p>
+<!--          <input  name="id" th:value="${emp.getId()}">-->
+        </div>
+
+        <div class="form-group">
+          <label style="font-weight: bold">Name</label>
+          <p th:text="${emp.getLastName()}"></p>
+<!--          <input th:value="${emp.getLastName()}" type="text" name="lastName" class="form-control"-->
+<!--                 placeholder="lastname">-->
+        </div>
+        <div class="form-group">
+          <label style="font-weight: bold">Email</label>
+          <p th:text="${emp.getEmail()}"></p>
+<!--          <input th:value="${emp.getEmail()}" type="email" name="email" class="form-control"-->
+<!--                 placeholder="xxx@xxx.com">-->
+        </div>
+        <div class="form-group">
+          <label style="font-weight: bold">Gender</label>
+          <p th:text="${emp.getGender()==0?'女':'男'}">
+        </div>
+        <div class="form-group">
+          <label style="font-weight: bold">Department</label>
+          <p th:text="${emp.getDepartment().getDepartmentName()}">
+        </div>
+        <div class="form-group">
+          <label style="font-weight: bold">Birth</label>
+          <p th:text="${#dates.format(emp.getBirth(),'yyyy-MM-dd HH:mm')}">
+        </div>
+      </form>
+
+    </main>
+  </div>
+</div>
+
+</body>
+
+</html>

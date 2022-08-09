@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<!-- saved from url=(0052)http://getbootstrap.com/docs/4.0/examples/dashboard/ -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.thymeleaf.org/thymeleaf-extras-shiro">
+<!--      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"-->
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Project</title>
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link th:href="@{/css/dashboard.css}" rel="stylesheet">
+    <style type="text/css">
+        /* Chart.js */
+
+        @-webkit-keyframes chartjs-render-animation {
+            from {
+                opacity: 0.99
+            }
+            to {
+                opacity: 1
+            }
+        }
+
+        @keyframes chartjs-render-animation {
+            from {
+                opacity: 0.99
+            }
+            to {
+                opacity: 1
+            }
+        }
+
+        .chartjs-render-monitor {
+            -webkit-animation: chartjs-render-animation 0.001s;
+            animation: chartjs-render-animation 0.001s;
+        }
+    </style>
+</head>
+
+<body>
+<div th:replace="~{commons/commons.html::topbar}"></div>
+<div class="container-fluid">
+    <div class="row">
+        <!--提取公共页面 传入参数userlist.html-->
+        <div th:insert="~{commons/commons.html::sidebar(active='projectlist.html')}"></div>
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <h2>
+                <a shiro:hasPermission="project:add" class="btn btn-sm btn-success" th:href="@{/pro/projectadd}">添加项目</a>
+            </h2>
+
+            <div class="table-responsive">
+
+                <div th:each="project:${projects}" class="float-left"  >
+                    <a th:href="@{/getProject/{id}(id=${project.getProjectId()})}">
+                        <img class="mb-4" th:src="@{/img/project.png}" alt="" width="200" height="120">
+                        <p th:text="${project.getProjectId()}" type="hidden"></p>
+                        <p th:text="${project.getName()}" style="font-size: 20px; font-weight: bold">1</p>
+                        <p th:text="${#dates.format(project.getDate(),'yyyy-MM-dd HH:mm:ss')}">2</p>
+                    </a>
+                    <td>
+                        <!--修改项目-->
+                        <a shiro:hasPermission="project:add" class="btn" th:href="@{/pro/proj_update/{id}(id=${project.getProjectId()})}">编辑</a>
+                        <!--删除项目-->
+                        <a shiro:hasPermission="project:add" class="btn" th:href="@{/pro/proj_delete/{id}(id=${project.getProjectId()})}">删除</a>
+                    </td>
+                </div>
+
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+
+</html>

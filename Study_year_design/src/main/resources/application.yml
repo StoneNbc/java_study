@@ -1,0 +1,25 @@
+spring:
+  #数据库
+  datasource:
+    username: UserStudy
+    password: nbctest
+    url: jdbc:mysql://localhost:3306/shop?useUnicode=true&characterEncoding=utf-8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  messages:
+    #配置国际化
+    basename: i18n/login
+
+  mvc:
+    format:
+      #日期格式
+      date: yyyy-MM-dd
+
+server:
+  servlet:
+    #配置首页
+    context-path: /lbc
+
+#mybatis:
+  type-aliases-package: com.example.study_year_design.pojo
+  mapper-locations: classpath:mybatis/mapper/*.xml

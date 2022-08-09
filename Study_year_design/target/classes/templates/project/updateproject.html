@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<!-- saved from url=(0052)http://getbootstrap.com/docs/4.0/examples/dashboard/ -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.thymeleaf.org/thymeleaf-extras-shiro">
+<!--      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"-->
+
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Project</title>
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link th:href="@{/css/dashboard.css}" rel="stylesheet">
+    <style type="text/css">
+        /* Chart.js */
+
+        @-webkit-keyframes chartjs-render-animation {
+            from {
+                opacity: 0.99
+            }
+            to {
+                opacity: 1
+            }
+        }
+
+        @keyframes chartjs-render-animation {
+            from {
+                opacity: 0.99
+            }
+            to {
+                opacity: 1
+            }
+        }
+
+        .chartjs-render-monitor {
+            -webkit-animation: chartjs-render-animation 0.001s;
+            animation: chartjs-render-animation 0.001s;
+        }
+    </style>
+</head>
+
+<body>
+<div th:replace="~{commons/commons.html::topbar}"></div>
+<div class="container-fluid">
+    <div class="row">
+
+        <div th:insert="~{commons/commons.html::sidebar(active='projectlist.html')}"></div>
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <h2>
+                修改项目信息
+            </h2>
+            <form th:action="@{/proj_update}"  method="post">
+                <input type="hidden" name="id" th:value="${proj_up.getProjectId()}">
+                <div class="form-group">
+                    <label >Name</label>
+                    <!--此处的name要与User实体类中的name属性对应-->
+                    <input th:value="${proj_up.getName()}" type="text" name="name" class="form-control" placeholder="Name">
+                </div>
+                <div class="form-group">
+                    <label>Date</label>
+                    <input th:value="${#dates.format(proj_up.getDate(),'yyyy-MM-dd HH:mm')}" type="text" name="date"
+                           class="form-control" placeholder="yyyy/MM/dd">
+                </div>
+                <div class="form-group">
+                    <label >Text</label>
+                    <!--此处的name要与User实体类中的name属性对应-->
+                    <input th:value="${proj_up.getText1()}" type="text" name="name" class="form-control" placeholder="Text">
+                </div>
+
+                <div class="form-group">
+                    <label >Text</label>
+                    <!--此处的name要与User实体类中的name属性对应-->
+                    <input th:value="${proj_up.getText2()}" type="text" name="name" class="form-control" placeholder="Text">
+                </div>
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+
+            </form>
+        </main>
+    </div>
+</div>
+
+</body>
+
+</html>
